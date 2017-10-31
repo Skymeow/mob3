@@ -7,17 +7,20 @@
 //
 
 import UIKit
+import Foundation
 
 class ViewController: UIViewController {
 
+    var collection: [Collection] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         let url = URL(string: "https://api.myjson.com/bins/1165qr")
         let session = URLSession.shared
         var request = URLRequest(url: url!)
         request.httpMethod = "GET"
-        let task = session.dataTask(with: request) {(data, response, error) in
-            guard let data = data else { return }
+        session.dataTask(with: request) {(data, response, error) in
+            guard let info = try? JSONDecoder().decode([Collection].self, from: data!) else { return }
+            
         }.resume()
     }
 }

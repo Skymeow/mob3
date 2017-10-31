@@ -12,6 +12,12 @@ struct Collection: Decodable {
     var collectionName: String
     var zippedImageURL: String
     
+    //have the searchKey here caz we customized our model property into something doesn't match with json key in the download file
+    enum SearchKey: String, CodingKey {
+        case collectionName = "collection_name"
+        case zippedImageURL = "zipped_image_url"
+    }
+    
 //    init for struct
     init(collectionName: String, zippedImageURL: String) {
         self.collectionName = collectionName
@@ -27,10 +33,6 @@ struct Collection: Decodable {
     }
 }
 
-//have the searchKey here caz we customized our model property into something doesn't match with json key in the download file
-enum SearchKey: String, CodingKey {
-    case collectionName = "collection_name"
-    case zippedImageURL = "zipped_image_url"
-}
+
 
 
