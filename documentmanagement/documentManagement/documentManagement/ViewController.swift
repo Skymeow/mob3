@@ -43,10 +43,20 @@ extension ViewController: UITableViewDataSource {
         return collections.count
     }
     
-//    func saveResourceToTempDict(imageString: String) -> Void {
-//        let url = URL(string: imageString)
-//        let session = URL
-//    }
+    /**        copy the simple file to a temporary directory in order for         NSFileCoordinatorReadingOptions.ForUploading to actually zip it up
+     */
+    func saveResourceToTempDict(zipURL: NSURL) -> Void {
+       let fm = FileManager.default
+        var srcDir = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(NSUUID().uuidString)
+        do {
+            try fm.createDirectory(at: srcDir!, withIntermediateDirectories: true, attributes: nil)
+            let tmpURL = srcDir?.appendingPathComponent((srcDir?.lastPathComponent)!)
+            try fm.copyItem(at: srcDir!, to: tmpURL!)
+        }
+        catch {
+            print("unable to save to temp dict")
+        }
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
@@ -56,15 +66,16 @@ extension ViewController: UITableViewDataSource {
             print(eachCollection.collectionName)
         }
         if eachCollection.zippedImageURL != nil {
-            print(eachCollection.zippedImageURL)
-            do {
-                let url = URL(string: eachCollection.zippedImageURL)
-                let unzipDict = try Zip.quickUnzipFile(url!)
-                print(unzipDict)
-            }
-            catch {
-                print("sorry, file unzip failed")
-            }
+            let zipURL = URL(string: eachCollection.zippedImageURL)
+            saveResourceToTempDict(zipURL: zipURL! as NSURL)
+//            do {
+//                let url = URL(string: eachCollection.zippedImageURL)
+//                let unzipDict = try Zip.quickUnzipFile(url!)
+//                print(unzipDict)
+//            }
+//            catch {
+//                print("sorry, file unzip failed")
+//            }
         }
         
         return cell
