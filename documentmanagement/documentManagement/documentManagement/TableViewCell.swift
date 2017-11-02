@@ -12,18 +12,18 @@ import Zip
 
 //declare the protocol in the sender, pass in the tapped function to make sure the button is tapped in cell
 protocol DownloadTappedDelegate: class {
-    func tapped()
+    func tapped(row: Int)
 }
 
 class TableViewCell: UITableViewCell {
-    var appendedName: String = ""
+    var row: Int = 0
 //    instantiate the delegate in the sender 
     weak var delegate: DownloadTappedDelegate?
     
     @IBAction func downloadTapped(_ sender: Any) {
         print("downloadTapped")
 //        call the delegate when the button is tapped
-        delegate?.tapped()
+        delegate?.tapped(row: self.row)
 
     }
     

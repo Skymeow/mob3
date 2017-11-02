@@ -37,7 +37,6 @@
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
                                                     <connections>
-                                                        <action selector="downloadTapped:" destination="kvW-jb-DuM" eventType="touchUpInside" id="HIc-W7-cZg"/>
                                                         <action selector="downloadTapped:" destination="KVF-Ha-AWs" eventType="touchUpInside" id="n6E-Qi-EFZ"/>
                                                     </connections>
                                                 </button>

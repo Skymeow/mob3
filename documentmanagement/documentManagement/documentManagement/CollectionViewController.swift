@@ -9,10 +9,11 @@
 import UIKit
 import Foundation
 import Zip
-
+import Alamofire
 
 class CollectionViewController: UIViewController {
-    
+    let fm = FileManager.default
+    var path: URL = URL(string: "string")! as URL
     @IBOutlet weak var tableView: UITableView!
    
     var collections: [Collection] = [] {
@@ -25,7 +26,7 @@ class CollectionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let url = URL(string: "https://api.myjson.com/bins/1165qr")
+        let url = URL(string: "https://api.myjson.com/bins/17i2zn")
         let session = URLSession.shared
         var request = URLRequest(url: url!)
         request.httpMethod = "GET"
@@ -43,16 +44,17 @@ class CollectionViewController: UIViewController {
         
     }
 }
-
+// make collectionVC conform to DownloadTappedDelegate
 extension CollectionViewController: UITableViewDataSource, DownloadTappedDelegate  {
-    
 /**
-     1. figure out the indexPath row of the cell tapped to get the zip string and name
-     2. pass the value we get from row to the tapped function of delegate below
-     3. call the downloadZip function
+     1. pass the indexPath row of the cell in the parameter to get the zip string and name
+     2. call the downloadZip function
  */
-    func tapped() {
-        downloadZipToCache(zipString: <#T##String#>, name: <#T##String#>)
+    func tapped(row: Int) {
+        let eachCollection = collections[row]
+        let name = eachCollection.collectionName
+        let zipString = eachCollection.rawImageURL
+        downloadZipToCache(zipString: zipString, name: name)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -70,44 +72,51 @@ extension CollectionViewController: UITableViewDataSource, DownloadTappedDelegat
        let zipUrl = URL(string: zipString)
        var request = URLRequest(url: zipUrl!)
         request.httpMethod = "GET"
-       let fm = FileManager.default
-        
-//        save to cache dir
-        let urls = fm.urls(for: .cachesDirectory, in: .userDomainMask)
-        if let cacheDirectory: URL = urls.first {
-            let cacheURL = cacheDirectory.appendingPathComponent(name)
-            //        for downloading zip file
-            session.downloadTask(with: request) { (data, response , error) in
-                guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {return}
+//        save to temp dir
+        let temporaryDirectory = self.fm.temporaryDirectory
+            //    for downloading zip file
+            session.downloadTask(with: request) { (urlData, response , error) in
+               let statusCode = (response as? HTTPURLResponse)!.statusCode
                 if statusCode == 200 {
-//                    copy the file from url we got from downloadTask to cache
-                    do {
-                        try fm.copyItem(at: data!, to: cacheURL)
+                    self.path = urlData!
+                    print("YOYOYOYOYOYO \(urlData)")
+                    //    part2 unzip from tempdir
+                    let urls = self.fm.urls(for: .cachesDirectory, in: .userDomainMask)
+                    if let cacheDir: URL = urls.first {
+                        Zip.addCustomFileExtension("tmp")
+                        do {
+                            try Zip.unzipFile(urlData!, destination: cacheDir, overwrite: true, password: nil, progress: {(progress) in
+                                print(progress)
+                            })
+                        }
+                        catch let error {
+                            print("oh no \(error)")
+                        }
                     }
-                    catch {
-                        print("sorry can't download")
-                    }
-                }
-            }.resume()
-        } else {
-            print("download mission failed")
-        }
+            }
+        }.resume()
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let eachCollection = collections[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
+        cell.delegate = self
+        let row = indexPath.row
+        cell.row = row
+        let eachCollection = collections[row]
         cell.textLabel?.text = eachCollection.collectionName
-        let name = eachCollection.rawImageURL
-        let zipString = eachCollection.rawImageURL
+    
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let eachCollection = collections[indexPath.row]
-
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
+//        //        pass in the delegate to cell
+//        cell.delegate = self
+//        let row = indexPath.row
+//        cell.row = row
+//
+//        return cell
+//    }
 }
 
 

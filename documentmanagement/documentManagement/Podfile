@@ -7,5 +7,5 @@ target 'documentManagement' do
 
   # Pods for documentManagement
   pod 'Zip', '~> 1.0'
-
+  pod 'Alamofire', '~> 4.5'
 end
