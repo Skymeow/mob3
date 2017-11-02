@@ -10,9 +10,9 @@ import UIKit
 import Foundation
 import Zip
 
-class ViewController: UIViewController {
-
+class CollectionViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+   
     var collections: [Collection] = [] {
         didSet{
             DispatchQueue.main.async {
@@ -20,6 +20,7 @@ class ViewController: UIViewController {
             }
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let url = URL(string: "https://api.myjson.com/bins/1165qr")
@@ -35,48 +36,52 @@ class ViewController: UIViewController {
             }
             
         }.resume()
+
+        
+        
     }
 }
 
-extension ViewController: UITableViewDataSource {
+extension CollectionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return collections.count
     }
     
-    /**        copy the simple file to a temporary directory in order for         NSFileCoordinatorReadingOptions.ForUploading to actually zip it up
+    /**  1. download the zipfile to library/cashes
+         2. unzip the file to temporary dir
+         3. preview the thumb img
+         4. show detail of all imgs
      */
-    func saveResourceToTempDict(zipURL: NSURL) -> Void {
+//    part one
+    func downloadZipToCache(zipString: String, name: String) -> Void {
+       let session = URLSession.shared
+       let zipUrl = URL(string: zipString)
+       var request = URLRequest(url: zipUrl!)
+        request.httpMethod = "GET"
        let fm = FileManager.default
-        var srcDir = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(NSUUID().uuidString)
-        do {
-            try fm.createDirectory(at: srcDir!, withIntermediateDirectories: true, attributes: nil)
-            let tmpURL = srcDir?.appendingPathComponent((srcDir?.lastPathComponent)!)
-            try fm.copyItem(at: srcDir!, to: tmpURL!)
-        }
-        catch {
-            print("unable to save to temp dict")
+//        save to cache dir
+        let urls = fm.urls(for: .cachesDirectory, in: .userDomainMask)
+        if let cacheDirectory: URL = urls.first {
+            let cacheURL = cacheDirectory.appendingPathComponent(name)
+            //        for downloading zip file
+            session.downloadTask(with: request) { (data, response , error) in
+                guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {return}
+                if statusCode == 200 {
+                    fm.copyItem(at: url, to: cacheURL)
+                }
+            }
+        } else {
+            print("unableTodownload")
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let eachCollection = collections[indexPath.row]
-        if eachCollection.collectionName != nil {
-            cell.textLabel?.text = eachCollection.collectionName
-            print(eachCollection.collectionName)
-        }
-        if eachCollection.zippedImageURL != nil {
-            let zipURL = URL(string: eachCollection.zippedImageURL)
-            saveResourceToTempDict(zipURL: zipURL! as NSURL)
-//            do {
-//                let url = URL(string: eachCollection.zippedImageURL)
-//                let unzipDict = try Zip.quickUnzipFile(url!)
-//                print(unzipDict)
-//            }
-//            catch {
-//                print("sorry, file unzip failed")
-//            }
-        }
+        cell.textLabel?.text = eachCollection.collectionName
+        let name = eachCollection.collectionName
+        let zipString = eachCollection.zippedImageURL
+        downloadZipToCache(zipString: zipString, name: name)
         
         return cell
     }
