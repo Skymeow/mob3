@@ -10,20 +10,21 @@ import UIKit
 import Foundation
 import Zip
 
-class TableViewCell: UITableViewCell {
+//declare the protocol in the sender, pass in the tapped function to make sure the button is tapped in cell
+protocol DownloadTappedDelegate: class {
+    func tapped()
+}
 
+class TableViewCell: UITableViewCell {
+    var appendedName: String = ""
+//    instantiate the delegate in the sender 
+    weak var delegate: DownloadTappedDelegate?
+    
     @IBAction func downloadTapped(_ sender: Any) {
         print("downloadTapped")
-        do {
-            let filePath = Bundle.main.url(forResource: "file", withExtension: "zip")
-            let tempDir = FileManager.default.temporaryDirectory
-            try Zip.unzipFile(filePath!, destination: tempDir, overwrite: true, password: "password", progress: { (progress) -> () in
-                print(progress)
-            })
-        }
-        catch {
-            print("sorry, file unzip failed")
-        }
+//        call the delegate when the button is tapped
+        delegate?.tapped()
+
     }
     
     override func awakeFromNib() {

@@ -10,7 +10,9 @@ import UIKit
 import Foundation
 import Zip
 
+
 class CollectionViewController: UIViewController {
+    
     @IBOutlet weak var tableView: UITableView!
    
     var collections: [Collection] = [] {
@@ -42,7 +44,17 @@ class CollectionViewController: UIViewController {
     }
 }
 
-extension CollectionViewController: UITableViewDataSource {
+extension CollectionViewController: UITableViewDataSource, DownloadTappedDelegate  {
+    
+/**
+     1. figure out the indexPath row of the cell tapped to get the zip string and name
+     2. pass the value we get from row to the tapped function of delegate below
+     3. call the downloadZip function
+ */
+    func tapped() {
+        downloadZipToCache(zipString: <#T##String#>, name: <#T##String#>)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return collections.count
     }
@@ -59,6 +71,7 @@ extension CollectionViewController: UITableViewDataSource {
        var request = URLRequest(url: zipUrl!)
         request.httpMethod = "GET"
        let fm = FileManager.default
+        
 //        save to cache dir
         let urls = fm.urls(for: .cachesDirectory, in: .userDomainMask)
         if let cacheDirectory: URL = urls.first {
@@ -67,11 +80,17 @@ extension CollectionViewController: UITableViewDataSource {
             session.downloadTask(with: request) { (data, response , error) in
                 guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {return}
                 if statusCode == 200 {
-                    fm.copyItem(at: url, to: cacheURL)
+//                    copy the file from url we got from downloadTask to cache
+                    do {
+                        try fm.copyItem(at: data!, to: cacheURL)
+                    }
+                    catch {
+                        print("sorry can't download")
+                    }
                 }
-            }
+            }.resume()
         } else {
-            print("unableTodownload")
+            print("download mission failed")
         }
     }
     
@@ -79,11 +98,15 @@ extension CollectionViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let eachCollection = collections[indexPath.row]
         cell.textLabel?.text = eachCollection.collectionName
-        let name = eachCollection.collectionName
-        let zipString = eachCollection.zippedImageURL
-        downloadZipToCache(zipString: zipString, name: name)
-        
+        let name = eachCollection.rawImageURL
+        let zipString = eachCollection.rawImageURL
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let eachCollection = collections[indexPath.row]
+
     }
 }
 
