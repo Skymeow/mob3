@@ -51,14 +51,21 @@ extension CollectionViewController: UITableViewDataSource, DownloadTappedDelegat
      1. pass the indexPath row of the cell in the parameter to get the zip string and name
      2. call the downloadZip function
  */
-    func tapped(row: Int, collectionURL: URL) {
+    func tapped(row: Int) {
         var eachCollection = collections[row]
         let name = eachCollection.collectionName
         let zipString = eachCollection.rawImageURL
-//        assign the cache url value we returned from the download function to a var
-        let collectionPath = downloadZipToCache(zipString: zipString, name: name)
-//        pass the cache url var to collection model
-        eachCollection.unzippedURL = collectionPath!
+    /**  1. Unzipping was finished
+      2. Update model
+     3. Reload collection view
+     */
+        downloadZipToCache(zipString: zipString, name: name, row: row) {
+            url in
+            print(url)
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -71,7 +78,7 @@ extension CollectionViewController: UITableViewDataSource, DownloadTappedDelegat
          4. show detail of all imgs
      */
 //    part one
-    func downloadZipToCache(zipString: String, name: String) -> URL? {
+    func downloadZipToCache(zipString: String, name: String, row: Int, completion: @escaping(URL) -> Void) {
        let session = URLSession.shared
        let zipUrl = URL(string: zipString)
        var request = URLRequest(url: zipUrl!)
@@ -88,22 +95,27 @@ extension CollectionViewController: UITableViewDataSource, DownloadTappedDelegat
                     if let cacheDir: URL = urls.first {
                         print(cacheDir)
                         Zip.addCustomFileExtension("tmp")
-//                        do {
-                            let unzipPath = try? Zip.unzipFile(urlData!, destination: cacheDir, overwrite: true, password: nil, progress: {(progress) in
-                                print(progress)
-                            })
-                            guard let urlPath = unzipPath else { return }
-//                            return the urlPath of cache
-                            return urlPath
-//                        }
-//                        catch let error {
-//                            print("oh no \(error)")
-//                        }
+                        do {
+                            try Zip.unzipFile(urlData!, destination: cacheDir, overwrite: true, password: nil, progress: nil)
+                            var eachCollection = self.collections[row]
+                            let stringRawImg = URL(string: eachCollection.rawImageURL)
+                            print(stringRawImg)
+                            let rawFolderName = stringRawImg!.lastPathComponent
+                            print(rawFolderName)
+                            let endIndex = rawFolderName.index(rawFolderName.endIndex, offsetBy: -4)
+                            let folderName = rawFolderName[..<endIndex]
+                            print(folderName)
+                            let cacheFileUrl = try? self.fm.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("\(folderName)/_preview.png")
+                            eachCollection.previewImageURL = cacheFileUrl!
+                            self.collections[row] = eachCollection
+                            completion(cacheFileUrl!)
+                        }
+                        catch let error {
+                            print("oh no \(error)")
+                        }
                     }
             }
         }.resume()
-//        if urlPath is nil, return nil caz the url we return is optional
-         return nil
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -112,20 +124,15 @@ extension CollectionViewController: UITableViewDataSource, DownloadTappedDelegat
         let row = indexPath.row
         cell.row = row
         let eachCollection = collections[row]
-        cell.textLabel?.text = eachCollection.collectionName
-        cell.unzippedCache = eachCollection.unzippedURL
+        cell.nameLabel.text = eachCollection.collectionName
+        let data = try? Data(contentsOf: eachCollection.previewImageURL)
+        if let data = data {
+            let img = UIImage(data: data)
+            cell.zippedImg.image = img
+        }
         return cell
     }
-    
-//    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
-//        //        pass in the delegate to cell
-//        cell.delegate = self
-//        let row = indexPath.row
-//        cell.row = row
-//
-//        return cell
-//    }
+
 }
 
 

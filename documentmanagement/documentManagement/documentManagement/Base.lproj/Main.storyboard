@@ -5,7 +5,6 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,30 +29,38 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="viR-Of-2ds">
-                                                    <rect key="frame" x="284" y="13" width="70" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="70" id="XHd-zJ-O8g"/>
-                                                        <constraint firstAttribute="height" constant="30" id="sKh-Ae-9Br"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="316" y="5" width="46" height="64.5"/>
                                                     <state key="normal" title="Button"/>
                                                     <connections>
                                                         <action selector="downloadTapped:" destination="KVF-Ha-AWs" eventType="touchUpInside" id="n6E-Qi-EFZ"/>
                                                     </connections>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tjz-qp-baS">
-                                                    <rect key="frame" x="20" y="1" width="101" height="72.5"/>
+                                                    <rect key="frame" x="20" y="1" width="133" height="73"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLi-zC-2UF">
+                                                    <rect key="frame" x="184" y="37" width="42" height="37"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="viR-Of-2ds" firstAttribute="top" secondItem="Rch-ot-J7G" secondAttribute="top" constant="13" id="Olc-Fy-scN"/>
-                                                <constraint firstItem="Tjz-qp-baS" firstAttribute="top" secondItem="Rch-ot-J7G" secondAttribute="top" constant="1" id="eq1-RF-Nnf"/>
-                                                <constraint firstItem="viR-Of-2ds" firstAttribute="leading" secondItem="Tjz-qp-baS" secondAttribute="trailing" constant="163" id="hDR-ES-3zL"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="viR-Of-2ds" secondAttribute="trailing" constant="13" id="lIq-DR-GRF"/>
-                                                <constraint firstItem="Tjz-qp-baS" firstAttribute="leading" secondItem="Rch-ot-J7G" secondAttribute="leading" constant="20" id="ocD-ht-IJE"/>
-                                                <constraint firstAttribute="bottom" secondItem="Tjz-qp-baS" secondAttribute="bottom" constant="1" id="q78-i6-YBE"/>
+                                                <constraint firstItem="viR-Of-2ds" firstAttribute="leading" secondItem="Tjz-qp-baS" secondAttribute="trailing" constant="163" id="1u1-GE-Mww"/>
+                                                <constraint firstAttribute="trailing" secondItem="viR-Of-2ds" secondAttribute="trailing" constant="13" id="ARh-GU-o8M"/>
+                                                <constraint firstItem="viR-Of-2ds" firstAttribute="leading" secondItem="tLi-zC-2UF" secondAttribute="trailing" constant="90" id="BRH-2W-gHZ"/>
+                                                <constraint firstItem="Tjz-qp-baS" firstAttribute="top" secondItem="Rch-ot-J7G" secondAttribute="top" constant="1" id="CdL-bq-veT"/>
+                                                <constraint firstItem="viR-Of-2ds" firstAttribute="top" secondItem="Rch-ot-J7G" secondAttribute="top" constant="5" id="HWT-1e-oYs"/>
+                                                <constraint firstAttribute="bottom" secondItem="tLi-zC-2UF" secondAttribute="bottom" constant="0.5" id="Je3-sS-HtC"/>
+                                                <constraint firstAttribute="bottom" secondItem="viR-Of-2ds" secondAttribute="bottom" constant="5" id="SSD-HX-Jgh"/>
+                                                <constraint firstItem="Tjz-qp-baS" firstAttribute="leading" secondItem="Rch-ot-J7G" secondAttribute="leading" constant="20" id="aDo-ts-FZj"/>
+                                                <constraint firstAttribute="bottom" secondItem="Tjz-qp-baS" secondAttribute="bottom" constant="1" id="cSE-ZR-02q"/>
+                                                <constraint firstItem="tLi-zC-2UF" firstAttribute="top" secondItem="Rch-ot-J7G" secondAttribute="top" constant="37" id="loM-wv-gHn"/>
+                                                <constraint firstItem="tLi-zC-2UF" firstAttribute="leading" secondItem="Tjz-qp-baS" secondAttribute="trailing" constant="31" id="qef-6Y-yn7"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="nameLabel" destination="tLi-zC-2UF" id="JTQ-eY-QPz"/>
                                             <outlet property="zippedImg" destination="Tjz-qp-baS" id="up3-lp-oUx"/>
                                         </connections>
                                     </tableViewCell>
