@@ -12,18 +12,22 @@ import Zip
 
 //declare the protocol in the sender, pass in the tapped function to make sure the button is tapped in cell
 protocol DownloadTappedDelegate: class {
-    func tapped(row: Int)
+    func tapped(row: Int, collectionURL: URL)
 }
 
 class TableViewCell: UITableViewCell {
     var row: Int = 0
-//    instantiate the delegate in the sender 
+    var unzippedCache: URL = URL(string: "URL")!
+    @IBOutlet weak var zippedImg: UIImageView!
+    //    instantiate the delegate in the sender
     weak var delegate: DownloadTappedDelegate?
     
     @IBAction func downloadTapped(_ sender: Any) {
         print("downloadTapped")
-//        call the delegate when the button is tapped
-        delegate?.tapped(row: self.row)
+        //  instantiate a var to the value of unzippedURL of Collection model
+//        var unzippedCache = Collection[self.row]
+        //  call the delegate when the button is tapped
+        delegate?.tapped(row: self.row, collectionURL: unzippedCache)
 
     }
     

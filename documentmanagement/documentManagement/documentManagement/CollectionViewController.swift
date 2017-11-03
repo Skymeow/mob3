@@ -13,7 +13,8 @@ import Alamofire
 
 class CollectionViewController: UIViewController {
     let fm = FileManager.default
-    var path: URL = URL(string: "string")! as URL
+//    var collectionUrl: URL = URL(string: "string")! as URL
+    
     @IBOutlet weak var tableView: UITableView!
    
     var collections: [Collection] = [] {
@@ -50,11 +51,14 @@ extension CollectionViewController: UITableViewDataSource, DownloadTappedDelegat
      1. pass the indexPath row of the cell in the parameter to get the zip string and name
      2. call the downloadZip function
  */
-    func tapped(row: Int) {
-        let eachCollection = collections[row]
+    func tapped(row: Int, collectionURL: URL) {
+        var eachCollection = collections[row]
         let name = eachCollection.collectionName
         let zipString = eachCollection.rawImageURL
-        downloadZipToCache(zipString: zipString, name: name)
+//        assign the cache url value we returned from the download function to a var
+        let collectionPath = downloadZipToCache(zipString: zipString, name: name)
+//        pass the cache url var to collection model
+        eachCollection.unzippedURL = collectionPath!
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -67,7 +71,7 @@ extension CollectionViewController: UITableViewDataSource, DownloadTappedDelegat
          4. show detail of all imgs
      */
 //    part one
-    func downloadZipToCache(zipString: String, name: String) -> Void {
+    func downloadZipToCache(zipString: String, name: String) -> URL? {
        let session = URLSession.shared
        let zipUrl = URL(string: zipString)
        var request = URLRequest(url: zipUrl!)
@@ -78,23 +82,28 @@ extension CollectionViewController: UITableViewDataSource, DownloadTappedDelegat
             session.downloadTask(with: request) { (urlData, response , error) in
                let statusCode = (response as? HTTPURLResponse)!.statusCode
                 if statusCode == 200 {
-                    self.path = urlData!
                     print("YOYOYOYOYOYO \(urlData)")
                     //    part2 unzip from tempdir
                     let urls = self.fm.urls(for: .cachesDirectory, in: .userDomainMask)
                     if let cacheDir: URL = urls.first {
+                        print(cacheDir)
                         Zip.addCustomFileExtension("tmp")
-                        do {
-                            try Zip.unzipFile(urlData!, destination: cacheDir, overwrite: true, password: nil, progress: {(progress) in
+//                        do {
+                            let unzipPath = try? Zip.unzipFile(urlData!, destination: cacheDir, overwrite: true, password: nil, progress: {(progress) in
                                 print(progress)
                             })
-                        }
-                        catch let error {
-                            print("oh no \(error)")
-                        }
+                            guard let urlPath = unzipPath else { return }
+//                            return the urlPath of cache
+                            return urlPath
+//                        }
+//                        catch let error {
+//                            print("oh no \(error)")
+//                        }
                     }
             }
         }.resume()
+//        if urlPath is nil, return nil caz the url we return is optional
+         return nil
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -104,7 +113,7 @@ extension CollectionViewController: UITableViewDataSource, DownloadTappedDelegat
         cell.row = row
         let eachCollection = collections[row]
         cell.textLabel?.text = eachCollection.collectionName
-    
+        cell.unzippedCache = eachCollection.unzippedURL
         return cell
     }
     

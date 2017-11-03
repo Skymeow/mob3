@@ -40,12 +40,22 @@
                                                         <action selector="downloadTapped:" destination="KVF-Ha-AWs" eventType="touchUpInside" id="n6E-Qi-EFZ"/>
                                                     </connections>
                                                 </button>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tjz-qp-baS">
+                                                    <rect key="frame" x="20" y="1" width="101" height="72.5"/>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="viR-Of-2ds" firstAttribute="top" secondItem="Rch-ot-J7G" secondAttribute="top" constant="13" id="Olc-Fy-scN"/>
+                                                <constraint firstItem="Tjz-qp-baS" firstAttribute="top" secondItem="Rch-ot-J7G" secondAttribute="top" constant="1" id="eq1-RF-Nnf"/>
+                                                <constraint firstItem="viR-Of-2ds" firstAttribute="leading" secondItem="Tjz-qp-baS" secondAttribute="trailing" constant="163" id="hDR-ES-3zL"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="viR-Of-2ds" secondAttribute="trailing" constant="13" id="lIq-DR-GRF"/>
+                                                <constraint firstItem="Tjz-qp-baS" firstAttribute="leading" secondItem="Rch-ot-J7G" secondAttribute="leading" constant="20" id="ocD-ht-IJE"/>
+                                                <constraint firstAttribute="bottom" secondItem="Tjz-qp-baS" secondAttribute="bottom" constant="1" id="q78-i6-YBE"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="zippedImg" destination="Tjz-qp-baS" id="up3-lp-oUx"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
