@@ -62,6 +62,15 @@ extension CollectionViewController: UITableViewDataSource, DownloadTappedDelegat
         downloadZipToCache(zipString: zipString, name: name, row: row) {
             url in
             print(url)
+            let stringRawImg = URL(string: self.collections[row].rawImageURL)
+            print(stringRawImg)
+            let rawFolderName = stringRawImg!.lastPathComponent
+            print(rawFolderName)
+            let endIndex = rawFolderName.index(rawFolderName.endIndex, offsetBy: -4)
+            let folderName = rawFolderName[..<endIndex]
+            print(folderName)
+            let cacheFileUrl = url.appendingPathComponent("\(folderName)/_preview.png")
+            self.collections[row].previewImageURL = cacheFileUrl
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -97,18 +106,8 @@ extension CollectionViewController: UITableViewDataSource, DownloadTappedDelegat
                         Zip.addCustomFileExtension("tmp")
                         do {
                             try Zip.unzipFile(urlData!, destination: cacheDir, overwrite: true, password: nil, progress: nil)
-                            var eachCollection = self.collections[row]
-                            let stringRawImg = URL(string: eachCollection.rawImageURL)
-                            print(stringRawImg)
-                            let rawFolderName = stringRawImg!.lastPathComponent
-                            print(rawFolderName)
-                            let endIndex = rawFolderName.index(rawFolderName.endIndex, offsetBy: -4)
-                            let folderName = rawFolderName[..<endIndex]
-                            print(folderName)
-                            let cacheFileUrl = try? self.fm.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("\(folderName)/_preview.png")
-                            eachCollection.previewImageURL = cacheFileUrl!
-                            self.collections[row] = eachCollection
-                            completion(cacheFileUrl!)
+                            
+                            completion(cacheDir)
                         }
                         catch let error {
                             print("oh no \(error)")
