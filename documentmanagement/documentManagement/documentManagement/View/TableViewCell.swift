@@ -35,7 +35,6 @@ class TableViewCell: UITableViewCell {
         print("downloadTapped")
         //  call the delegate when the button is tapped
         delegate?.tapped(row: self.row)
-        
     }
     
     override func awakeFromNib() {

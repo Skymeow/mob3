@@ -70,7 +70,9 @@ extension CollectionViewController: UITableViewDataSource, DownloadTappedDelegat
             let folderName = rawFolderName[..<endIndex]
             print(folderName)
             let cacheFileUrl = url.appendingPathComponent("\(folderName)/_preview.png")
+            let allimgUrl = url.appendingPathComponent("\(folderName)")
             self.collections[row].previewImageURL = cacheFileUrl
+            self.collections[row].unzippedURL = allimgUrl
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -134,4 +136,13 @@ extension CollectionViewController: UITableViewDataSource, DownloadTappedDelegat
 
 }
 
+extension CollectionViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let imgCollection = collections[indexPath.row].unzippedURL
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        let displayImagesViewController = storyBoard.instantiateViewController(withIdentifier: "toDisplay") as! DisplayImagesViewController
+        displayImagesViewController.imgsFolder = imgCollection
+        navigationController?.pushViewController(displayImagesViewController, animated: true)
+    }
+}
 
