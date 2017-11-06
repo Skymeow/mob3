@@ -12,11 +12,12 @@ import Zip
 
 //declare the protocol in the sender, pass in the tapped function to make sure the button is tapped in cell
 protocol DownloadTappedDelegate: class {
-    func tapped(row: Int)
+    func tapped(row: Int, _ sender: TableViewCell)
 }
 
 class TableViewCell: UITableViewCell {
     
+    @IBOutlet weak var progressbar: UIProgressView!
     @IBOutlet weak var nameLabel: UILabel!
     var row: Int = 0
 //    var unzippedCache: URL? {
@@ -34,7 +35,7 @@ class TableViewCell: UITableViewCell {
     @IBAction func downloadTapped(_ sender: Any) {
         print("downloadTapped")
         //  call the delegate when the button is tapped
-        delegate?.tapped(row: self.row)
+        delegate?.tapped(row: self.row, self)
     }
     
     override func awakeFromNib() {

@@ -13,7 +13,7 @@ import Alamofire
 
 class CollectionViewController: UIViewController {
     let fm = FileManager.default
-    
+    var progressStatus: Double?
     @IBOutlet weak var tableView: UITableView!
    
     var collections: [Collection] = [] {
@@ -32,7 +32,6 @@ class CollectionViewController: UIViewController {
         request.httpMethod = "GET"
         session.dataTask(with: request) {(data, response, error) in
             guard let info = try? JSONDecoder().decode([Collection].self, from: data!) else { return }
-//            var zipImage = info[0].zippedImageURL
             self.collections = info
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -50,10 +49,11 @@ extension CollectionViewController: UITableViewDataSource, DownloadTappedDelegat
      1. pass the indexPath row of the cell in the parameter to get the zip string and name
      2. call the downloadZip function
  */
-    func tapped(row: Int) {
+    func tapped(row: Int, _ sender: TableViewCell) {
         var eachCollection = collections[row]
         let name = eachCollection.collectionName
         let zipString = eachCollection.rawImageURL
+        
     /**  1. Unzipping was finished
       2. Update model
      3. Reload collection view
@@ -70,10 +70,11 @@ extension CollectionViewController: UITableViewDataSource, DownloadTappedDelegat
             print(folderName)
             let cacheFileUrl = url.appendingPathComponent("\(folderName)/_preview.png")
             let allimgUrl = url.appendingPathComponent("\(folderName)")
-            self.collections[row].previewImageURL = cacheFileUrl
-            self.collections[row].unzippedURL = allimgUrl
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                self.collections[row].previewImageURL = cacheFileUrl
+                self.collections[row].unzippedURL = allimgUrl
+                sender.progressbar.progress = Float(self.progressStatus!)
             }
         }
     }
@@ -87,7 +88,7 @@ extension CollectionViewController: UITableViewDataSource, DownloadTappedDelegat
          3. preview the thumb img
          4. show detail of all imgs
      */
-//    part one
+//    part1
     func downloadZipToCache(zipString: String, name: String, row: Int, completion: @escaping(URL) -> Void) {
        let session = URLSession.shared
        let zipUrl = URL(string: zipString)
@@ -99,14 +100,15 @@ extension CollectionViewController: UITableViewDataSource, DownloadTappedDelegat
             session.downloadTask(with: request) { (urlData, response , error) in
                let statusCode = (response as? HTTPURLResponse)!.statusCode
                 if statusCode == 200 {
-                    print("YOYOYOYOYOYO \(urlData)")
                     //    part2 unzip from tempdir
                     let urls = self.fm.urls(for: .cachesDirectory, in: .userDomainMask)
                     if let cacheDir: URL = urls.first {
                         print(cacheDir)
                         Zip.addCustomFileExtension("tmp")
                         do {
-                            try Zip.unzipFile(urlData!, destination: cacheDir, overwrite: true, password: nil, progress: nil)
+                            try Zip.unzipFile(urlData!, destination: cacheDir, overwrite: true, password: nil, progress: {(progress) -> () in
+                                self.progressStatus = progress
+                            })
                             
                             completion(cacheDir)
                         }
@@ -130,6 +132,7 @@ extension CollectionViewController: UITableViewDataSource, DownloadTappedDelegat
             let img = UIImage(data: data)
             cell.zippedImg.image = img
         }
+//        cell.progressbar.progress = Float(self.progressStatus!)
         return cell
     }
 

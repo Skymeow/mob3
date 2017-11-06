@@ -44,6 +44,9 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="ipi-G5-9IP">
+                                                    <rect key="frame" x="165" y="46" width="166" height="18"/>
+                                                </progressView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="viR-Of-2ds" firstAttribute="leading" secondItem="Tjz-qp-baS" secondAttribute="trailing" constant="163" id="1u1-GE-Mww"/>
@@ -51,8 +54,12 @@
                                                 <constraint firstItem="viR-Of-2ds" firstAttribute="leading" secondItem="tLi-zC-2UF" secondAttribute="trailing" constant="90" id="BRH-2W-gHZ"/>
                                                 <constraint firstItem="Tjz-qp-baS" firstAttribute="top" secondItem="Rch-ot-J7G" secondAttribute="top" constant="1" id="CdL-bq-veT"/>
                                                 <constraint firstItem="viR-Of-2ds" firstAttribute="top" secondItem="Rch-ot-J7G" secondAttribute="top" constant="5" id="HWT-1e-oYs"/>
+                                                <constraint firstAttribute="trailing" secondItem="ipi-G5-9IP" secondAttribute="trailing" constant="44" id="Hpr-ya-las"/>
                                                 <constraint firstAttribute="bottom" secondItem="tLi-zC-2UF" secondAttribute="bottom" constant="0.5" id="Je3-sS-HtC"/>
+                                                <constraint firstAttribute="bottom" secondItem="ipi-G5-9IP" secondAttribute="bottom" constant="10.5" id="MXP-WJ-AHv"/>
+                                                <constraint firstItem="ipi-G5-9IP" firstAttribute="top" secondItem="Rch-ot-J7G" secondAttribute="top" constant="46" id="No7-wO-0lo"/>
                                                 <constraint firstAttribute="bottom" secondItem="viR-Of-2ds" secondAttribute="bottom" constant="5" id="SSD-HX-Jgh"/>
+                                                <constraint firstItem="ipi-G5-9IP" firstAttribute="leading" secondItem="Rch-ot-J7G" secondAttribute="leading" constant="165" id="SlX-FH-atI"/>
                                                 <constraint firstItem="Tjz-qp-baS" firstAttribute="leading" secondItem="Rch-ot-J7G" secondAttribute="leading" constant="20" id="aDo-ts-FZj"/>
                                                 <constraint firstAttribute="bottom" secondItem="Tjz-qp-baS" secondAttribute="bottom" constant="1" id="cSE-ZR-02q"/>
                                                 <constraint firstItem="tLi-zC-2UF" firstAttribute="top" secondItem="Rch-ot-J7G" secondAttribute="top" constant="37" id="loM-wv-gHn"/>
@@ -61,6 +68,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="nameLabel" destination="tLi-zC-2UF" id="JTQ-eY-QPz"/>
+                                            <outlet property="progressbar" destination="ipi-G5-9IP" id="CZX-bY-qlg"/>
                                             <outlet property="zippedImg" destination="Tjz-qp-baS" id="up3-lp-oUx"/>
                                         </connections>
                                     </tableViewCell>
