@@ -14,6 +14,7 @@ class CollectionViewCell: UICollectionViewCell {
     
     func configureCell(collectionImage: URL) {
         print(collectionImage.absoluteString)
+//        to make img appear, need to convert URL to path String
         self.collectionImgView.image = UIImage(contentsOfFile: collectionImage.absoluteURL.relativePath)
     }
 }

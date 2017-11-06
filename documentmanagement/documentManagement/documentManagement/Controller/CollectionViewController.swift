@@ -13,7 +13,6 @@ import Alamofire
 
 class CollectionViewController: UIViewController {
     let fm = FileManager.default
-//    var collectionUrl: URL = URL(string: "string")! as URL
     
     @IBOutlet weak var tableView: UITableView!
    
@@ -27,7 +26,7 @@ class CollectionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let url = URL(string: "https://api.myjson.com/bins/17i2zn")
+        let url = URL(string: "https://api.myjson.com/bins/17ge17")
         let session = URLSession.shared
         var request = URLRequest(url: url!)
         request.httpMethod = "GET"

@@ -19,16 +19,13 @@ class DisplayImagesViewController: UIViewController {
     }
     @IBOutlet weak var imgsCollectionView: UICollectionView!
     
-    //        create a for loop to display arr of imgs in the collection grid view
+/** get an arr of all files that has the type of jpg or jpeg
+ */
     func createImgNames(folder: URL) {
-        for i in 1..<10 {
-            let pathDir = "\(i)" + ".jpg"
-            let eachImgName = folder.appendingPathComponent(pathDir)
-            imgNames.append(eachImgName)
-        }
-        print(imgNames)
-        DispatchQueue.main.async {
-            self.imgsCollectionView.reloadData()
+        let fm = FileManager.default
+        let folder_url = try? fm.contentsOfDirectory(at: folder, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
+        if let contents = folder_url {
+            imgNames = contents.filter({ $0.absoluteString.contains(".jpg") || $0.absoluteString.contains(".jpeg")})
         }
     }
         
