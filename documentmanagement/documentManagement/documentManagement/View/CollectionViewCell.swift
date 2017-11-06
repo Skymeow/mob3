@@ -13,6 +13,7 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var collectionImgView: UIImageView!
     
     func configureCell(collectionImage: URL) {
-        self.collectionImgView.image = UIImage(contentsOfFile: collectionImage.absoluteString)
+        print(collectionImage.absoluteString)
+        self.collectionImgView.image = UIImage(contentsOfFile: collectionImage.absoluteURL.relativePath)
     }
 }

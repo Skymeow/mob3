@@ -57,13 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "documentManagement/Controller/DisplayImagesViewController.swift"
-            timestampString = "531618622.505263"
+            filePath = "documentManagement/View/CollectionViewCell.swift"
+            timestampString = "531619192.38998"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "collectionView(_:cellForItemAt:)"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "configureCell(collectionImage:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,13 +73,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "documentManagement/Controller/DisplayImagesViewController.swift"
-            timestampString = "531618622.505799"
+            filePath = "documentManagement/View/CollectionViewCell.swift"
+            timestampString = "531619192.390699"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "collectionView(_:numberOfItemsInSection:)"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "configureCell(collectionImage:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
