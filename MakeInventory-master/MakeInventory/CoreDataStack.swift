@@ -49,12 +49,10 @@ public final class CoreDataStack {
     }
     
     func deleteTo(context: NSManagedObjectContext, object: NSManagedObject) {
-        if context.hasChanges {
-            do {
-                try context.delete(object)
-            } catch {
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        let fetchRequest = NSFetchRequest<Inventory>(entityName: "Inventory")
+        if let result = try? context.fetch(fetchRequest) {
+            for object in result {
+                context.delete(object)
             }
         }
     }

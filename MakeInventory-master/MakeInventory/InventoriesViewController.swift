@@ -59,6 +59,8 @@ extension InventoriesViewController: UITableViewDataSource {
         if editingStyle == .delete {
             inventories.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            stack.deleteTo(context: stack.privateContext, object: inventories[indexPath.row])
+            print(stack.privateContext)
         }
     }
 }
