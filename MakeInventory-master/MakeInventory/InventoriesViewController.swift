@@ -34,6 +34,14 @@ class InventoriesViewController: UIViewController {
             print(error)
         }
     }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "toEdit", let destination = segue.destination as? EditInventoryViewController, let cellIndex = tableView.indexPathForSelectedRow?.row {
+//            destination.inventoryName = inventories[cellIndex].name
+//            destination.inventoryQuantity = "\(inventories[cellIndex].quantity)"
+//            destination.inventoryDate = inventories[cellIndex].date
+//        }
+//    }
 }
 
 
@@ -54,8 +62,20 @@ extension InventoriesViewController: UITableViewDelegate {
         let item = inventories[indexPath.row]
         
         cell.textLabel?.text = item.name
-        cell.detailTextLabel?.text = "x\(item.quantity) Date\(item.date)"
+        cell.detailTextLabel?.text = "x\(item.quantity) Date: \(item.date!)"
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let row = indexPath.row
+        let invItem = inventories[row]
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        let editViewController = storyBoard.instantiateViewController(withIdentifier: "editPage") as! EditInventoryViewController
+        editViewController.inventoryName = invItem.name
+        editViewController.inventoryQuantity = "\(invItem.quantity)"
+        editViewController.inventoryDate = invItem.date
+        navigationController?.pushViewController(editViewController, animated: true)
+        
     }
 }

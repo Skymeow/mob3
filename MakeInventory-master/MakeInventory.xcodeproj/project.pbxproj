@@ -16,6 +16,7 @@
 		055B95211FB9491100F3A369 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055B95201FB9491100F3A369 /* CoreDataStack.swift */; };
 		055B95231FB964F800F3A369 /* AddInventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055B95221FB964F800F3A369 /* AddInventoryViewController.swift */; };
 		055B95251FB9673C00F3A369 /* Inventory+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055B95241FB9673C00F3A369 /* Inventory+Extensions.swift */; };
+		F9BCEB041FBA8F5000858439 /* EditInventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BCEB031FBA8F5000858439 /* EditInventoryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		055B95201FB9491100F3A369 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		055B95221FB964F800F3A369 /* AddInventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInventoryViewController.swift; sourceTree = "<group>"; };
 		055B95241FB9673C00F3A369 /* Inventory+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Inventory+Extensions.swift"; sourceTree = "<group>"; };
+		F9BCEB031FBA8F5000858439 /* EditInventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInventoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			children = (
 				055B950B1FB932B800F3A369 /* AppDelegate.swift */,
 				055B95221FB964F800F3A369 /* AddInventoryViewController.swift */,
+				F9BCEB031FBA8F5000858439 /* EditInventoryViewController.swift */,
 				055B950D1FB932B800F3A369 /* InventoriesViewController.swift */,
 				055B95201FB9491100F3A369 /* CoreDataStack.swift */,
 				055B950F1FB932B800F3A369 /* Main.storyboard */,
@@ -104,7 +107,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0910;
 				LastUpgradeCheck = 0910;
-				ORGANIZATIONNAME = "Eliel Gordon";
+				ORGANIZATIONNAME = "Sky Xu";
 				TargetAttributes = {
 					055B95071FB932B800F3A369 = {
 						CreatedOnToolsVersion = 9.1;
@@ -152,6 +155,7 @@
 				055B950E1FB932B800F3A369 /* InventoriesViewController.swift in Sources */,
 				055B950C1FB932B800F3A369 /* AppDelegate.swift in Sources */,
 				055B95211FB9491100F3A369 /* CoreDataStack.swift in Sources */,
+				F9BCEB041FBA8F5000858439 /* EditInventoryViewController.swift in Sources */,
 				055B95251FB9673C00F3A369 /* Inventory+Extensions.swift in Sources */,
 				055B95231FB964F800F3A369 /* AddInventoryViewController.swift in Sources */,
 			);
@@ -227,7 +231,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -278,7 +282,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -293,6 +297,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2CL75PM5U8;
 				INFOPLIST_FILE = MakeInventory/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sky.MakeInventory;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -308,6 +313,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2CL75PM5U8;
 				INFOPLIST_FILE = MakeInventory/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sky.MakeInventory;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -28,7 +28,7 @@ class AddInventoryViewController: UIViewController {
         
         inv.name = name
         inv.quantity = quantity
-//        inv.date = date
+        inv.date = date
         coreDataStack.saveTo(context: coreDataStack.privateContext)
         
         self.navigationController?.popViewController(animated: true)
