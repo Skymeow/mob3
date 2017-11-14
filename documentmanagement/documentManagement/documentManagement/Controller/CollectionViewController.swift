@@ -63,10 +63,10 @@ extension CollectionViewController: UITableViewDataSource, DownloadTappedDelegat
             print(url)
             let stringRawImg = URL(string: self.collections[row].rawImageURL)
             print(stringRawImg)
-            let rawFolderName = stringRawImg!.lastPathComponent
-            print(rawFolderName)
-            let endIndex = rawFolderName.index(rawFolderName.endIndex, offsetBy: -4)
-            let folderName = rawFolderName[..<endIndex]
+            let folderName = stringRawImg!.lastPathComponent.split(separator: ".")[0]
+//            print(rawFolderName)
+//            let endIndex = rawFolderName.index(rawFolderName.endIndex, offsetBy: -4)
+//            let folderName = rawFolderName[..<endIndex]
             print(folderName)
             let cacheFileUrl = url.appendingPathComponent("\(folderName)/_preview.png")
             let allimgUrl = url.appendingPathComponent("\(folderName)")
