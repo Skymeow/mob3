@@ -35,6 +35,7 @@ class InventoriesViewController: UIViewController {
         }
     }
     
+    
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        if segue.identifier == "toEdit", let destination = segue.destination as? EditInventoryViewController, let cellIndex = tableView.indexPathForSelectedRow?.row {
 //            destination.inventoryName = inventories[cellIndex].name
@@ -52,6 +53,13 @@ extension InventoriesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return inventories.count
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            inventories.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
     }
 }
 
