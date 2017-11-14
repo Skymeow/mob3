@@ -51,8 +51,10 @@ public final class CoreDataStack {
     func deleteTo(context: NSManagedObjectContext, object: NSManagedObject) {
         let fetchRequest = NSFetchRequest<Inventory>(entityName: "Inventory")
         if let result = try? context.fetch(fetchRequest) {
-            for object in result {
+            for item in result {
+                if item == object {
                 context.delete(object)
+                }
             }
         }
     }
