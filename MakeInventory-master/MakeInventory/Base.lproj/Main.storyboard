@@ -355,15 +355,38 @@
                     <navigationItem key="navigationItem" title="Edit Inventory" id="2v5-hj-xys">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="VkX-Ic-pvN"/>
                     </navigationItem>
-                    <connections>
-                        <outlet property="inventoryDateField" destination="bNa-gh-mcy" id="ZvM-Kx-fvf"/>
-                        <outlet property="inventoryNameField" destination="4nn-8J-PqD" id="B6E-js-Xew"/>
-                        <outlet property="inventoryQuantityField" destination="Voc-4l-ACp" id="cH9-Px-wa8"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dMq-Bc-GPe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1166" y="34"/>
+        </scene>
+        <!--Cart Table View Controller-->
+        <scene sceneID="PDp-vw-Oxy">
+            <objects>
+                <tableViewController id="nxd-B8-IKj" customClass="CartTableViewController" customModule="MakeInventory" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="GiK-M2-KUC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="nuL-Sm-I16">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nuL-Sm-I16" id="LcX-r4-Le9">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="nxd-B8-IKj" id="0aH-gF-yvt"/>
+                            <outlet property="delegate" destination="nxd-B8-IKj" id="MFe-r9-oxq"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pB6-07-fNX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2455" y="-17"/>
         </scene>
     </scenes>
 </document>

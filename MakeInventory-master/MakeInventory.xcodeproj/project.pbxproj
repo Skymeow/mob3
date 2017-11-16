@@ -16,6 +16,7 @@
 		055B95211FB9491100F3A369 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055B95201FB9491100F3A369 /* CoreDataStack.swift */; };
 		055B95231FB964F800F3A369 /* AddInventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055B95221FB964F800F3A369 /* AddInventoryViewController.swift */; };
 		055B95251FB9673C00F3A369 /* Inventory+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055B95241FB9673C00F3A369 /* Inventory+Extensions.swift */; };
+		F9567EED1FBD02050069D7DF /* CartTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9567EEC1FBD02050069D7DF /* CartTableViewController.swift */; };
 		F9BCEB041FBA8F5000858439 /* EditInventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BCEB031FBA8F5000858439 /* EditInventoryViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		055B95201FB9491100F3A369 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		055B95221FB964F800F3A369 /* AddInventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInventoryViewController.swift; sourceTree = "<group>"; };
 		055B95241FB9673C00F3A369 /* Inventory+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Inventory+Extensions.swift"; sourceTree = "<group>"; };
+		F9567EEC1FBD02050069D7DF /* CartTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTableViewController.swift; sourceTree = "<group>"; };
 		F9BCEB031FBA8F5000858439 /* EditInventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInventoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,6 +72,7 @@
 				055B950D1FB932B800F3A369 /* InventoriesViewController.swift */,
 				055B95201FB9491100F3A369 /* CoreDataStack.swift */,
 				055B950F1FB932B800F3A369 /* Main.storyboard */,
+				F9567EEC1FBD02050069D7DF /* CartTableViewController.swift */,
 				055B95151FB932B800F3A369 /* Assets.xcassets */,
 				055B95171FB932B800F3A369 /* LaunchScreen.storyboard */,
 				055B951A1FB932B800F3A369 /* Info.plist */,
@@ -152,6 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				055B95141FB932B800F3A369 /* MakeInventory.xcdatamodeld in Sources */,
+				F9567EED1FBD02050069D7DF /* CartTableViewController.swift in Sources */,
 				055B950E1FB932B800F3A369 /* InventoriesViewController.swift in Sources */,
 				055B950C1FB932B800F3A369 /* AppDelegate.swift in Sources */,
 				055B95211FB9491100F3A369 /* CoreDataStack.swift in Sources */,

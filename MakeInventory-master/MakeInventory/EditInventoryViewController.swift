@@ -22,18 +22,19 @@ class EditInventoryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         nameLabel.placeholder = inventoryName ?? "Eggs"
         quantitylabel.placeholder = inventoryQuantity ?? "2"
         dateLabel.placeholder = inventoryDate ?? "1994"
     }
     
     @IBAction func editInventoryTapped(_ sender: UIButton) {
-        let inv = Inventory(context: coreDataStack.privateContext)
+        let inv = Inventory(context: coreDataStack.viewContext)
         inv.name = nameLabel.text
         inv.date = dateLabel.text
         inv.quantity = Int64(quantitylabel.text!)!
         
-        coreDataStack.saveTo(context: coreDataStack.privateContext)
+        coreDataStack.saveTo(context: coreDataStack.viewContext)
     }
     
     override func didReceiveMemoryWarning() {

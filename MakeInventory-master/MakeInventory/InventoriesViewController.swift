@@ -85,7 +85,8 @@ extension InventoriesViewController: UITableViewDelegate {
         editViewController.inventoryName = invItem.name
         editViewController.inventoryQuantity = "\(invItem.quantity)"
         editViewController.inventoryDate = invItem.date
-        navigationController?.pushViewController(editViewController, animated: true)
+        navigationController?.present(editViewController, animated: true, completion: nil)
+//        navigationController?.pushViewController(editViewController, animated: true)
         
     }
 }
