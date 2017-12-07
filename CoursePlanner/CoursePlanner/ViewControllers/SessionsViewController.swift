@@ -1,18 +1,23 @@
 //
-//  ViewController.swift
+//  SessionsViewController.swift
 //  CoursePlanner
 //
-//  Created by Sky Xu on 12/4/17.
+//  Created by Sky Xu on 12/5/17.
 //  Copyright © 2017 Sky Xu. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class SessionsViewController: UIViewController {
+    
+    var course: Course?
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +25,4 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
 }
-

@@ -8,20 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		F93687E31FD61CA40060E43C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93687E21FD61CA40060E43C /* AppDelegate.swift */; };
-		F93687E51FD61CA40060E43C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93687E41FD61CA40060E43C /* ViewController.swift */; };
+		F93687E51FD61CA40060E43C /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93687E41FD61CA40060E43C /* CoursesViewController.swift */; };
 		F93687E81FD61CA40060E43C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F93687E61FD61CA40060E43C /* Main.storyboard */; };
 		F93687EA1FD61CA40060E43C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F93687E91FD61CA40060E43C /* Assets.xcassets */; };
 		F93687ED1FD61CA40060E43C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F93687EB1FD61CA40060E43C /* LaunchScreen.storyboard */; };
+		F93687F61FD61D160060E43C /* CoursePlannerModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F93687F41FD61D160060E43C /* CoursePlannerModel.xcdatamodeld */; };
+		F93687F91FD623CA0060E43C /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93687F81FD623CA0060E43C /* CoreDataStack.swift */; };
+		F93687FC1FD624140060E43C /* Course+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93687FB1FD624140060E43C /* Course+Extensions.swift */; };
+		F93687FE1FD6242E0060E43C /* CoreDataInitiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93687FD1FD6242E0060E43C /* CoreDataInitiable.swift */; };
+		F9D7E3DE1FD72750009BEE77 /* SessionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D7E3DD1FD72750009BEE77 /* SessionsViewController.swift */; };
+		F9D7E3E01FD8DCB6009BEE77 /* AddCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D7E3DF1FD8DCB6009BEE77 /* AddCourseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F93687DF1FD61CA40060E43C /* CoursePlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoursePlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F93687E21FD61CA40060E43C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F93687E41FD61CA40060E43C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F93687E41FD61CA40060E43C /* CoursesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewController.swift; sourceTree = "<group>"; };
 		F93687E71FD61CA40060E43C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F93687E91FD61CA40060E43C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F93687EC1FD61CA40060E43C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F93687EE1FD61CA40060E43C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F93687F51FD61D160060E43C /* CoursePlannerModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoursePlannerModel.xcdatamodel; sourceTree = "<group>"; };
+		F93687F81FD623CA0060E43C /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		F93687FB1FD624140060E43C /* Course+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Course+Extensions.swift"; path = "CoursePlanner/ViewControllers/Coredata/Course+Extensions.swift"; sourceTree = SOURCE_ROOT; };
+		F93687FD1FD6242E0060E43C /* CoreDataInitiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoreDataInitiable.swift; path = CoursePlanner/ViewControllers/Coredata/CoreDataInitiable.swift; sourceTree = SOURCE_ROOT; };
+		F9D7E3DD1FD72750009BEE77 /* SessionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsViewController.swift; sourceTree = "<group>"; };
+		F9D7E3DF1FD8DCB6009BEE77 /* AddCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,13 +67,43 @@
 			isa = PBXGroup;
 			children = (
 				F93687E21FD61CA40060E43C /* AppDelegate.swift */,
-				F93687E41FD61CA40060E43C /* ViewController.swift */,
+				F93687F71FD623990060E43C /* ViewControllers */,
 				F93687E61FD61CA40060E43C /* Main.storyboard */,
+				F93687F41FD61D160060E43C /* CoursePlannerModel.xcdatamodeld */,
 				F93687E91FD61CA40060E43C /* Assets.xcassets */,
 				F93687EB1FD61CA40060E43C /* LaunchScreen.storyboard */,
 				F93687EE1FD61CA40060E43C /* Info.plist */,
 			);
 			path = CoursePlanner;
+			sourceTree = "<group>";
+		};
+		F93687F71FD623990060E43C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F93687E41FD61CA40060E43C /* CoursesViewController.swift */,
+				F9D7E3DF1FD8DCB6009BEE77 /* AddCourseViewController.swift */,
+				F9D7E3DD1FD72750009BEE77 /* SessionsViewController.swift */,
+				F93687FA1FD623D20060E43C /* Coredata */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		F93687FA1FD623D20060E43C /* Coredata */ = {
+			isa = PBXGroup;
+			children = (
+				F93687F81FD623CA0060E43C /* CoreDataStack.swift */,
+				F93687FF1FD624350060E43C /* Extensions + Helpers */,
+			);
+			path = Coredata;
+			sourceTree = "<group>";
+		};
+		F93687FF1FD624350060E43C /* Extensions + Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F93687FB1FD624140060E43C /* Course+Extensions.swift */,
+				F93687FD1FD6242E0060E43C /* CoreDataInitiable.swift */,
+			);
+			name = "Extensions + Helpers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,8 +178,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F93687E51FD61CA40060E43C /* ViewController.swift in Sources */,
+				F93687FE1FD6242E0060E43C /* CoreDataInitiable.swift in Sources */,
+				F9D7E3E01FD8DCB6009BEE77 /* AddCourseViewController.swift in Sources */,
+				F93687F61FD61D160060E43C /* CoursePlannerModel.xcdatamodeld in Sources */,
+				F93687FC1FD624140060E43C /* Course+Extensions.swift in Sources */,
+				F9D7E3DE1FD72750009BEE77 /* SessionsViewController.swift in Sources */,
+				F93687E51FD61CA40060E43C /* CoursesViewController.swift in Sources */,
 				F93687E31FD61CA40060E43C /* AppDelegate.swift in Sources */,
+				F93687F91FD623CA0060E43C /* CoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +370,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F93687F41FD61D160060E43C /* CoursePlannerModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F93687F51FD61D160060E43C /* CoursePlannerModel.xcdatamodel */,
+			);
+			currentVersion = F93687F51FD61D160060E43C /* CoursePlannerModel.xcdatamodel */;
+			path = CoursePlannerModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F93687D71FD61CA40060E43C /* Project object */;
 }
