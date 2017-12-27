@@ -16,8 +16,13 @@
 		F93687F91FD623CA0060E43C /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93687F81FD623CA0060E43C /* CoreDataStack.swift */; };
 		F93687FC1FD624140060E43C /* Course+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93687FB1FD624140060E43C /* Course+Extensions.swift */; };
 		F93687FE1FD6242E0060E43C /* CoreDataInitiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93687FD1FD6242E0060E43C /* CoreDataInitiable.swift */; };
+		F98196031FDB1B790090BD6E /* FetchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98196021FDB1B790090BD6E /* FetchHelper.swift */; };
 		F9D7E3DE1FD72750009BEE77 /* SessionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D7E3DD1FD72750009BEE77 /* SessionsViewController.swift */; };
-		F9D7E3E01FD8DCB6009BEE77 /* AddCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D7E3DF1FD8DCB6009BEE77 /* AddCourseViewController.swift */; };
+		F9D7E3E01FD8DCB6009BEE77 /* AddSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D7E3DF1FD8DCB6009BEE77 /* AddSessionViewController.swift */; };
+		F9F94F6C1FF2E9BA00BC25D2 /* AddCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F94F6B1FF2E9BA00BC25D2 /* AddCourseViewController.swift */; };
+		F9F94F6E1FF3014400BC25D2 /* CourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F94F6D1FF3014400BC25D2 /* CourseTableViewCell.swift */; };
+		F9F94F731FF3184100BC25D2 /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F94F721FF3184100BC25D2 /* TableViewDataSource.swift */; };
+		F9F94F761FF34E1B00BC25D2 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F94F751FF34E1B00BC25D2 /* SessionTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,8 +37,13 @@
 		F93687F81FD623CA0060E43C /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		F93687FB1FD624140060E43C /* Course+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Course+Extensions.swift"; path = "CoursePlanner/ViewControllers/Coredata/Course+Extensions.swift"; sourceTree = SOURCE_ROOT; };
 		F93687FD1FD6242E0060E43C /* CoreDataInitiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoreDataInitiable.swift; path = CoursePlanner/ViewControllers/Coredata/CoreDataInitiable.swift; sourceTree = SOURCE_ROOT; };
+		F98196021FDB1B790090BD6E /* FetchHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchHelper.swift; sourceTree = "<group>"; };
 		F9D7E3DD1FD72750009BEE77 /* SessionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsViewController.swift; sourceTree = "<group>"; };
-		F9D7E3DF1FD8DCB6009BEE77 /* AddCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseViewController.swift; sourceTree = "<group>"; };
+		F9D7E3DF1FD8DCB6009BEE77 /* AddSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSessionViewController.swift; sourceTree = "<group>"; };
+		F9F94F6B1FF2E9BA00BC25D2 /* AddCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseViewController.swift; sourceTree = "<group>"; };
+		F9F94F6D1FF3014400BC25D2 /* CourseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableViewCell.swift; sourceTree = "<group>"; };
+		F9F94F721FF3184100BC25D2 /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
+		F9F94F751FF34E1B00BC25D2 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SessionTableViewCell.swift; path = CoursePlanner/Views/SessionTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +60,7 @@
 		F93687D61FD61CA40060E43C = {
 			isa = PBXGroup;
 			children = (
+				F9F94F741FF3186400BC25D2 /* Helpers */,
 				F93687E11FD61CA40060E43C /* CoursePlanner */,
 				F93687E01FD61CA40060E43C /* Products */,
 			);
@@ -68,6 +79,7 @@
 			children = (
 				F93687E21FD61CA40060E43C /* AppDelegate.swift */,
 				F93687F71FD623990060E43C /* ViewControllers */,
+				F9F94F6F1FF3015C00BC25D2 /* Views */,
 				F93687E61FD61CA40060E43C /* Main.storyboard */,
 				F93687F41FD61D160060E43C /* CoursePlannerModel.xcdatamodeld */,
 				F93687E91FD61CA40060E43C /* Assets.xcassets */,
@@ -81,8 +93,9 @@
 			isa = PBXGroup;
 			children = (
 				F93687E41FD61CA40060E43C /* CoursesViewController.swift */,
-				F9D7E3DF1FD8DCB6009BEE77 /* AddCourseViewController.swift */,
+				F9F94F6B1FF2E9BA00BC25D2 /* AddCourseViewController.swift */,
 				F9D7E3DD1FD72750009BEE77 /* SessionsViewController.swift */,
+				F9D7E3DF1FD8DCB6009BEE77 /* AddSessionViewController.swift */,
 				F93687FA1FD623D20060E43C /* Coredata */,
 			);
 			path = ViewControllers;
@@ -102,8 +115,26 @@
 			children = (
 				F93687FB1FD624140060E43C /* Course+Extensions.swift */,
 				F93687FD1FD6242E0060E43C /* CoreDataInitiable.swift */,
+				F98196021FDB1B790090BD6E /* FetchHelper.swift */,
 			);
 			name = "Extensions + Helpers";
+			sourceTree = "<group>";
+		};
+		F9F94F6F1FF3015C00BC25D2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F9F94F6D1FF3014400BC25D2 /* CourseTableViewCell.swift */,
+				F9F94F751FF34E1B00BC25D2 /* SessionTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F9F94F741FF3186400BC25D2 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F9F94F721FF3184100BC25D2 /* TableViewDataSource.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,13 +210,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				F93687FE1FD6242E0060E43C /* CoreDataInitiable.swift in Sources */,
-				F9D7E3E01FD8DCB6009BEE77 /* AddCourseViewController.swift in Sources */,
+				F98196031FDB1B790090BD6E /* FetchHelper.swift in Sources */,
+				F9F94F761FF34E1B00BC25D2 /* SessionTableViewCell.swift in Sources */,
+				F9D7E3E01FD8DCB6009BEE77 /* AddSessionViewController.swift in Sources */,
 				F93687F61FD61D160060E43C /* CoursePlannerModel.xcdatamodeld in Sources */,
 				F93687FC1FD624140060E43C /* Course+Extensions.swift in Sources */,
 				F9D7E3DE1FD72750009BEE77 /* SessionsViewController.swift in Sources */,
+				F9F94F731FF3184100BC25D2 /* TableViewDataSource.swift in Sources */,
 				F93687E51FD61CA40060E43C /* CoursesViewController.swift in Sources */,
+				F9F94F6C1FF2E9BA00BC25D2 /* AddCourseViewController.swift in Sources */,
 				F93687E31FD61CA40060E43C /* AppDelegate.swift in Sources */,
 				F93687F91FD623CA0060E43C /* CoreDataStack.swift in Sources */,
+				F9F94F6E1FF3014400BC25D2 /* CourseTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

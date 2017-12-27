@@ -11,37 +11,24 @@ import UIKit
 class CoursesViewController: UIViewController {
     
     let coreDataStack = CoreDataStack.instance
-    
-    var courses: [Course]?
+    var courses: [Course]? {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
     
     @IBOutlet weak var tableView: UITableView!
     
-    func saveSessionToCourse(_ course: Course) {
-        course.addToSessions(<#T##value: Session##Session#>)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // fetch courses
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        let course1 = Course(context: coreDataStack.privateContext)
-        course1.name = "cs1"
-        course1.meetingTime = "monday"
-        
-        let course2 = Course(context: coreDataStack.privateContext)
-        course2.name = "cs2"
-        course2.meetingTime = "tuesday"
-        
-        let course3 = Course(context: coreDataStack.privateContext)
-        course3.name = "cs3"
-        course3.meetingTime = "wedesday"
-        
-        coreDataStack.saveTo(context: coreDataStack.privateContext)
-        self.courses = [course1, course2, course3]
+        // fetch courses
+        self.courses = fetchAll(Course.self, route: .course)
     }
 }
 
@@ -56,23 +43,29 @@ extension CoursesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "coursesCell", for: indexPath)
-        cell.textLabel?.text = self.courses![indexPath.row].name
-        cell.detailTextLabel?.text = self.courses![indexPath.row].meetingTime
+        let cell = tableView.dequeueReusableCell(withIdentifier: "coursesCell", for: indexPath) as! CourseTableViewCell
+        cell.delegate = self
+        cell.courseName.text = self.courses![indexPath.row].name
+        cell.courseTime.text = self.courses![indexPath.row].meetingTime
+        cell.selectedCourse = self.courses![indexPath.row]
         
         return cell
     }
+}
+
+extension CoursesViewController: passCourseDelegate {
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let addSessionVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "addSession") as? addSessionViewController {
-            addSessionVC.selectedCourse = self.courses?[indexPath.row]
-            self.present(addSessionVC, animated: true)
-        }
+    func tappedSession(_ sender: CourseTableViewCell) {
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "sessionsVC") as! SessionsViewController
+        vc.selectedCourse = sender.selectedCourse
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func tappedProject(_ sender: CourseTableViewCell) {
         
     }
 }
-
-
 
 
 

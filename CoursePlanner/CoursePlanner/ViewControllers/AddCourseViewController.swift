@@ -2,31 +2,31 @@
 //  AddCourseViewController.swift
 //  CoursePlanner
 //
-//  Created by Sky Xu on 12/6/17.
+//  Created by Sky Xu on 12/26/17.
 //  Copyright © 2017 Sky Xu. All rights reserved.
 //
 
 import UIKit
 
-class AddSessionViewController: UIViewController {
+class AddCourseViewController: UIViewController {
     
-    var selectedCourse: Course?
+    let coreDataStack = CoreDataStack.instance
     
-    @IBOutlet weak var sessionTime: UITextField!
+    @IBOutlet weak var courseName: UITextField!
+    @IBOutlet weak var courseTime: UITextField!
     
-    @IBOutlet weak var sessionName: UITextField!
-    
-    @IBAction func saveSessionTapped(_ sender: UIButton) {
+    @IBAction func saveTapped(_ sender: UIButton) {
+        guard let addedName = courseName.text,
+            let addedTime = courseTime.text else { return }
         
-        guard let name = sessionName.text,
-              let time = sessionTime.text else { return }
-              self.selectedCourse?.setValue(name, forKey: "session")
-        
+        let addedCourse = Course(context: coreDataStack.privateContext)
+        addedCourse.meetingTime = addedTime
+        addedCourse.name = addedName
+        coreDataStack.saveTo(context: coreDataStack.privateContext)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
+
 }
