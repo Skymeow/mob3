@@ -34,7 +34,7 @@ public final class CoreDataStack {
     func saveTo(context: NSManagedObjectContext) {
         if context.hasChanges {
             do {
-                try context.save()
+                 try context.save()
             } catch {
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")

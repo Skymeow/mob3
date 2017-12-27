@@ -22,7 +22,8 @@ class AddSessionViewController: UIViewController {
               let time = sessionTime.text else { return }
               newSession.name = name
               newSession.time = time
-              self.selectedCourse?.addToSessions(newSession)
+              newSession.courseName = selectedCourse?.name
+//              self.selectedCourse?.addToSessions(newSession)
               coreDataStack.saveTo(context: coreDataStack.privateContext)
     }
     
